@@ -10,7 +10,7 @@
                 <li class="breadcrumb-item active"><?= $title; ?></li>
             </ol>
             <div class="card mb-4">
-                <div class="card-header">
+                <div class="card-header bg-dark text-light">
                     <i class="fas fa-table me-1"></i>
                     Data Semua Surat Masuk
 
@@ -18,41 +18,51 @@
                 <div class="card-body">
                     <a href="/sm/create" class="btn btn-primary mb-1">
                         <i class="fas fa-plus"></i>
-                        Tambah Arsip
+                        Tambah
                     </a>
+                    <?php if (session()->getFlashdata('pesan')) : ?>
+                        <div class="alert alert-primary" role="alert">
+                            <?= session()->getFlashdata('pesan'); ?>
+                        </div>
+                    <?php endif; ?>
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>No Surat</th>
-                                <th>Tanggal Surat</th>
+                                <th>No</th>
+                                <th>No Surat / tgl Surat</th>
                                 <th>Tanggal Diterima</th>
-                                <th>Perihal</th>
-                                <th>Sifat</th>
-                                <th>Jenis</th>
+                                <th>Perihal / keterangan</th>
+                                <th>Sifat | Jenis</th>
                                 <th>Nama Instansi</th>
                                 <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $i = 1; ?>
                             <?php foreach ($surat as $data) : ?>
                                 <tr>
-                                    <td><?= $data->no_surat; ?></td>
-                                    <td><?= $data->tgl_surat; ?></td>
+                                    <td><?= $i; ?></td>
+                                    <td>
+                                        <?= $data->no_surat; ?> - <br>
+                                        <?= $data->tgl_surat; ?>
+
+                                    </td>
                                     <td><?= $data->tgl_terima; ?></td>
                                     <td><?= $data->perihal; ?></td>
-                                    <td><?= $data->sifat; ?></td>
-                                    <td><?= $data->jenis; ?></td>
+                                    <td><?= $data->sifat; ?> | <?= $data->jenis; ?></td>
                                     <td><?= $data->surat_dari; ?></td>
-                                    <td class="justify-content-center d-flex ">
-                                        <a href="#" class="btn btn-primary">Edit</a>
-                                        <!-- <a href="#" class="btn btn-success  mx-2" for="staticBackdrop-<?= $data->no_surat; ?>" data-bs-toggle="modal" data-bs-target="#staticBackdrop-<?= $data->no_surat; ?>">Detail</a> -->
-                                        <button type="button" class="btn btn-success mx-2 tampilModaldetail" data-id="<?= $data->no_surat; ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            Detail
-                                        </button>
-                                        <a href="#" class="btn btn-danger">Hapus</a>
+                                    <td class="d-flex flex-column">
+                                        <a href="/sm/edit/<?= $data->id_masuk; ?>" class="btn btn-primary p-0"><i class="fas fa-pencil"></i></a>
+                                        <a href="<?= base_url('filesurat/' . $data->dokumen); ?>" class="btn btn-success p-0 my-1"><i class="fas fa-download"></i></a>
+                                        <form action="/sm/<?= $data->id_masuk; ?>" method="post" class="d-inline mx-auto">
+                                            <?= csrf_field(); ?>
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-danger py-0" onclick="return confirm('yakin ingin menghapus ??')"><i class="fas fa-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
-                            <?php endforeach; ?>
+                            <?php $i++;
+                            endforeach; ?>
                         </tbody>
                     </table>
                 </div>

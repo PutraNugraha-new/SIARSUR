@@ -38,9 +38,12 @@ $routes->set404Override();
 $routes->get('/', 'Admin\dashboard::index');
 $routes->get('/sm', 'Admin\sm::index');
 $routes->get('/sm/create', 'Admin\sm::create');
+$routes->get('sm/save', 'Admin\sm::save');
+$routes->delete('/sm/(:num)', 'Admin\sm::delete/$1');
+$routes->get('/sm/edit/(:num)', 'Admin\sm::edit/$1');
 
 
-// $routes->setAutoRoute(true);
+$routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
