@@ -28,4 +28,9 @@ class smModel extends Model
         $sifat = $builder->get()->getResult();
         return $sifat;
     }
+
+    public function jumlahSm()
+    {
+        return $this->countAllResults();
+    }
 }

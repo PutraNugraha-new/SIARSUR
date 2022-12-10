@@ -4,7 +4,6 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <!-- <h1 class="mt-4"><?= $title; ?></h1> -->
             <ol class="breadcrumb my-4">
                 <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
                 <li class="breadcrumb-item active"><?= $title; ?></li>
@@ -12,7 +11,7 @@
             <div class="card mb-4">
                 <div class="card-header bg-dark text-light">
                     <i class="fas fa-table me-1"></i>
-                    Data Semua Surat Masuk
+                    Data Jenis Surat Masuk
 
                 </div>
                 <div class="card-body">
@@ -29,32 +28,20 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>No Surat / tgl Surat</th>
-                                <th>Tanggal Diterima</th>
-                                <th>Perihal / keterangan</th>
-                                <th>Sifat | Jenis</th>
-                                <th>Nama Instansi</th>
-                                <th class="text-center">Aksi</th>
+                                <th>Jenis Surat</th>
+                                <th class="text-center col-2">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i = 1; ?>
-                            <?php foreach ($surat as $data) : ?>
+                            <?php
+                            $i = 1;
+                            foreach ($jenis as $data) : ?>
                                 <tr>
                                     <td><?= $i; ?></td>
-                                    <td>
-                                        <?= $data->no_surat; ?> - <br>
-                                        <?= $data->tgl_surat; ?>
-
-                                    </td>
-                                    <td><?= $data->tgl_terima; ?></td>
-                                    <td><?= $data->perihal; ?></td>
-                                    <td><?= $data->sifat; ?> | <?= $data->jenis; ?></td>
-                                    <td><?= $data->surat_dari; ?></td>
+                                    <td><?= $data['jenis']; ?></td>
                                     <td class="d-flex flex-column">
-                                        <a href="/sm/edit/<?= $data->id_masuk; ?>" class="btn btn-primary p-0"><i class="fas fa-pencil"></i></a>
-                                        <a href="<?= base_url('filesurat/' . $data->dokumen); ?>" class="btn btn-success p-0 my-1"><i class="fas fa-download"></i></a>
-                                        <form action="/sm/<?= $data->id_masuk; ?>" method="post" class="d-inline mx-auto">
+                                        <a href="/sm/edit/<?= $data['id_jenis']; ?>" class="btn btn-primary p-0 mx-auto mb-2 w-25"><i class="fas fa-pencil"></i></a>
+                                        <form action="/sm/<?= $data['id_jenis']; ?>" method="post" class="d-inline mx-auto">
                                             <?= csrf_field(); ?>
                                             <input type="hidden" name="_method" value="DELETE">
                                             <button type="submit" class="btn btn-danger py-0" onclick="return confirm('yakin ingin menghapus ??')"><i class="fas fa-trash"></i></button>

@@ -42,6 +42,7 @@ $routes->get('sm/save', 'Admin\sm::save');
 $routes->delete('/sm/(:num)', 'Admin\sm::delete/$1');
 $routes->get('/sm/edit/(:num)', 'Admin\sm::edit/$1');
 
+$routes->get('/jenis', 'Admin\jenis::index');
 
 $routes->setAutoRoute(true);
 

@@ -30,6 +30,10 @@
                             <a class="nav-link" href="layout-static.html">Buat Surat</a>
                         </nav>
                     </div>
+                    <a class="nav-link" href="/jenis">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Jenis
+                    </a>
 
                     <div class="sb-sidenav-menu-heading">user</div>
                     <a class="nav-link" href="charts.html">
