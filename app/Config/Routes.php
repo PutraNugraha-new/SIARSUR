@@ -36,6 +36,7 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Admin\dashboard::index');
+
 $routes->get('/sm', 'Admin\sm::index');
 $routes->get('/sm/create', 'Admin\sm::create');
 $routes->get('sm/save', 'Admin\sm::save');
@@ -43,6 +44,11 @@ $routes->delete('/sm/(:num)', 'Admin\sm::delete/$1');
 $routes->get('/sm/edit/(:num)', 'Admin\sm::edit/$1');
 
 $routes->get('/jenis', 'Admin\jenis::index');
+$routes->get('/jenis/create', 'Admin\jenis::create');
+$routes->delete('/jenis/(:num)', 'Admin\jenis::delete/$1');
+$routes->get('/jenis/edit/(:num)', 'Admin\jenis::edit/$1');
+
+$routes->get('/sifat', 'Admin\sifat::index');
 
 $routes->setAutoRoute(true);
 

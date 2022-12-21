@@ -34,6 +34,10 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Jenis
                     </a>
+                    <a class="nav-link" href="/sifat">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Sifat
+                    </a>
 
                     <div class="sb-sidenav-menu-heading">user</div>
                     <a class="nav-link" href="charts.html">

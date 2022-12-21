@@ -18,4 +18,12 @@ class jenisModel extends Model
         }
         return $this->where(['id_jenis' => $id])->first();
     }
+
+    public function jumlahJenis($id = false)
+    {
+        if ($id == false) {
+            return $this->findAll();
+        }
+        return $this->where(['jenis' => $id])->countAllResults();
+    }
 }

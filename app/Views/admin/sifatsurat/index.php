@@ -11,7 +11,7 @@
             <div class="card mb-4">
                 <div class="card-header bg-dark text-light">
                     <i class="fas fa-table me-1"></i>
-                    Data Jenis Surat Masuk
+                    Data Sifat Surat Masuk
 
                 </div>
                 <div class="card-body">
@@ -33,20 +33,20 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Jenis Surat</th>
+                                <th>Sifat Surat</th>
                                 <th class="text-center col-2">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $i = 1;
-                            foreach ($jenis as $data) : ?>
+                            foreach ($sifat as $data) : ?>
                                 <tr>
                                     <td><?= $i; ?></td>
-                                    <td><?= $data['jenis']; ?></td>
+                                    <td><?= $data['sifat']; ?></td>
                                     <td class="d-flex flex-column">
-                                        <a href="/jenis/edit/<?= $data['id_jenis']; ?>" class="btn btn-primary p-0 mx-auto mb-2 w-25"><i class="fas fa-pencil"></i></a>
-                                        <form action="/jenis/<?= $data['id_jenis']; ?>" method="post" class="d-inline mx-auto">
+                                        <a href="/jenis/edit/<?= $data['id_sifat']; ?>" class="btn btn-primary p-0 mx-auto mb-2 w-25"><i class="fas fa-pencil"></i></a>
+                                        <form action="/jenis/<?= $data['id_sifat']; ?>" method="post" class="d-inline mx-auto">
                                             <?= csrf_field(); ?>
                                             <input type="hidden" name="_method" value="DELETE">
                                             <button type="submit" class="btn btn-danger py-0" onclick="return confirm('yakin ingin menghapus ??')"><i class="fas fa-trash"></i></button>

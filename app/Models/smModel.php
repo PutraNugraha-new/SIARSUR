@@ -33,4 +33,12 @@ class smModel extends Model
     {
         return $this->countAllResults();
     }
+
+    public function cariJenis($id = false)
+    {
+        if ($id == false) {
+            return $this->findAll();
+        }
+        return $this->where(['id_jenis' => $id])->countAllResults();
+    }
 }
