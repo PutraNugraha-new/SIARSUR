@@ -20,6 +20,10 @@
                         <i class="fas fa-plus"></i>
                         Tambah
                     </a>
+                    <a href="/sm/printPdf" class="btn btn-success mb-1" target="_blank">
+                        <i class="fas fa-print"></i>
+                        Cetak
+                    </a>
                     <?php if (session()->getFlashdata('pesan')) : ?>
                         <div class="alert alert-primary" role="alert">
                             <?= session()->getFlashdata('pesan'); ?>
@@ -44,12 +48,12 @@
                                     <td><?= $i; ?></td>
                                     <td>
                                         <?= $data->no_surat; ?> - <br>
-                                        <?= $data->tgl_surat; ?>
+                                        <b> <?= $data->tgl_surat; ?></b>
 
                                     </td>
                                     <td><?= $data->tgl_terima; ?></td>
                                     <td><?= $data->perihal; ?></td>
-                                    <td><?= $data->sifat; ?> | <?= $data->jenis; ?></td>
+                                    <td><?= $data->sifat; ?> | <b> <?= $data->jenis; ?> </b></td>
                                     <td><?= $data->surat_dari; ?></td>
                                     <td class="d-flex flex-column">
                                         <a href="/sm/edit/<?= $data->id_masuk; ?>" class="btn btn-primary p-0"><i class="fas fa-pencil"></i></a>

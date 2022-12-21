@@ -6,6 +6,7 @@ use App\Models\smModel;
 use App\Models\sifatModel;
 use App\Controllers\BaseController;
 use App\Models\jenisModel;
+use \Dompdf\Dompdf;
 
 class Sm extends BaseController
 {
@@ -30,6 +31,24 @@ class Sm extends BaseController
         // dd($data);
 
         return view('admin/suratmasuk/index', $data);
+    }
+
+    public function printPdf()
+    {
+        $dompdf = new Dompdf();
+        $data = [
+            'title' => 'Surat Masuk',
+            'user' => 'Admin',
+            'surat' => $this->SmModel->getAll()
+        ];
+        // return view('admin/suratmasuk/cetak', $data);
+        $html =  view('admin/suratmasuk/cetak', $data);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream('surat masuk.pdf', array(
+            "Attachment" => false
+        ));
     }
 
     // public function detail($id)
