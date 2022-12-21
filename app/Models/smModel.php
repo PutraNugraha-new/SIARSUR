@@ -41,4 +41,11 @@ class smModel extends Model
         }
         return $this->where(['id_jenis' => $id])->countAllResults();
     }
+    public function cariSifat($id = false)
+    {
+        if ($id == false) {
+            return $this->findAll();
+        }
+        return $this->where(['id_sifat' => $id])->countAllResults();
+    }
 }

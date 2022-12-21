@@ -49,6 +49,9 @@ $routes->delete('/jenis/(:num)', 'Admin\jenis::delete/$1');
 $routes->get('/jenis/edit/(:num)', 'Admin\jenis::edit/$1');
 
 $routes->get('/sifat', 'Admin\sifat::index');
+$routes->get('/sifat/create', 'Admin\sifat::create');
+$routes->delete('/sifat/(:num)', 'Admin\sifat::delete/$1');
+$routes->get('/sifat/edit/(:num)', 'Admin\sifat::edit/$1');
 
 $routes->setAutoRoute(true);
 

@@ -15,7 +15,7 @@
 
                 </div>
                 <div class="card-body">
-                    <a href="/jenis/create" class="btn btn-primary mb-1">
+                    <a href="/sifat/create" class="btn btn-primary mb-1">
                         <i class="fas fa-plus"></i>
                         Tambah
                     </a>
@@ -45,8 +45,8 @@
                                     <td><?= $i; ?></td>
                                     <td><?= $data['sifat']; ?></td>
                                     <td class="d-flex flex-column">
-                                        <a href="/jenis/edit/<?= $data['id_sifat']; ?>" class="btn btn-primary p-0 mx-auto mb-2 w-25"><i class="fas fa-pencil"></i></a>
-                                        <form action="/jenis/<?= $data['id_sifat']; ?>" method="post" class="d-inline mx-auto">
+                                        <a href="/sifat/edit/<?= $data['id_sifat']; ?>" class="btn btn-primary p-0 mx-auto mb-2 w-25"><i class="fas fa-pencil"></i></a>
+                                        <form action="/sifat/<?= $data['id_sifat']; ?>" method="post" class="d-inline mx-auto">
                                             <?= csrf_field(); ?>
                                             <input type="hidden" name="_method" value="DELETE">
                                             <button type="submit" class="btn btn-danger py-0" onclick="return confirm('yakin ingin menghapus ??')"><i class="fas fa-trash"></i></button>

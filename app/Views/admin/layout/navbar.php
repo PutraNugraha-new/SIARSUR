@@ -10,7 +10,7 @@
                     </a>
                     <div class="sb-sidenav-menu-heading">Data Surat</div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-share"></i></div>
                         Surat Masuk
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -20,7 +20,7 @@
                         </nav>
                     </div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#suratKeluar" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-reply"></i></div>
                         Surat Keluar
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -30,18 +30,17 @@
                             <a class="nav-link" href="layout-static.html">Buat Surat</a>
                         </nav>
                     </div>
+                    <div class="sb-sidenav-menu-heading">Setting</div>
                     <a class="nav-link" href="/jenis">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-bookmark"></i></div>
                         Jenis
                     </a>
                     <a class="nav-link" href="/sifat">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-bookmark"></i></div>
                         Sifat
                     </a>
-
-                    <div class="sb-sidenav-menu-heading">user</div>
                     <a class="nav-link" href="charts.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                         Profile
                     </a>
                 </div>
