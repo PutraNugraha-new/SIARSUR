@@ -36,19 +36,25 @@ class Sm extends BaseController
     public function printPdf()
     {
         $dompdf = new Dompdf();
+        $tgl_awal = $this->request->getVar('tgl_awal');
+        $tgl_akhir = $this->request->getVar('tgl_akhir');
+        $sifatSurat = $this->request->getVar('sifat');
         $data = [
             'title' => 'Surat Masuk',
             'user' => 'Admin',
-            'surat' => $this->SmModel->getAll()
+            'surat' => $this->SmModel->getBulan($tgl_awal, $tgl_akhir, $sifatSurat),
+            'tgl' => $this->request->getVar('tgl_awal'),
+            'tgl_akhir' => $this->request->getVar('tgl_akhir')
+
         ];
-        // return view('admin/suratmasuk/cetak', $data);
-        $html =  view('admin/suratmasuk/cetak', $data);
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-        $dompdf->stream('surat masuk.pdf', array(
-            "Attachment" => false
-        ));
+        return view('admin/suratmasuk/cetak', $data);
+        // $html =  view('admin/suratmasuk/cetak', $data);
+        // $dompdf->loadHtml($html);
+        // $dompdf->setPaper('A4', 'portrait');
+        // $dompdf->render();
+        // $dompdf->stream('LaporanSuratMasuk.pdf', array(
+        //     "Attachment" => false
+        // ));
     }
 
     // public function detail($id)

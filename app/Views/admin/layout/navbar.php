@@ -10,7 +10,7 @@
                     </a>
                     <div class="sb-sidenav-menu-heading">Data Surat</div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-share"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-envelope"></i></div>
                         Surat Masuk
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -20,7 +20,7 @@
                         </nav>
                     </div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#suratKeluar" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-reply"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-envelope-open"></i></div>
                         Surat Keluar
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>

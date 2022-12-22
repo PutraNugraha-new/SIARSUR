@@ -16,14 +16,17 @@
 
                 </div>
                 <div class="card-body">
-                    <a href="/sm/create" class="btn btn-primary mb-1">
+                    <a href="/sm/create" class="btn btn-outline-primary mb-1 shadow">
                         <i class="fas fa-plus"></i>
                         Tambah
                     </a>
-                    <a href="/sm/printPdf" class="btn btn-success mb-1" target="_blank">
+                    <!-- <a href="/sm/printPdf" class="btn btn-success mb-1" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-print"></i>
                         Cetak
-                    </a>
+                    </a> -->
+                    <button type="button" class="btn btn-outline-success mb-1 shadow" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fas fa-print"></i> Cetak
+                    </button>
                     <?php if (session()->getFlashdata('pesan')) : ?>
                         <div class="alert alert-primary" role="alert">
                             <?= session()->getFlashdata('pesan'); ?>
@@ -73,6 +76,41 @@
             </div>
         </div>
     </main>
+    <!-- modals -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cetak Laporan Surat Masuk</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/admin/sm/printPdf" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <label for="bulan" class="mb-2">Dari Bulan</label>
+                            <input type="date" class="form-control" name="tgl_awal" id="bulan">
+                            <small class="text-danger">Jangan diisi jika ingin mencetak semua tanggal</small>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="bulan" class="mb-2">Sampai Bulan</label>
+                            <input type="date" class="form-control" name="tgl_akhir" id="bulan">
+                            <small class="text-danger">Jangan diisi jika ingin mencetak semua tanggal</small>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="sifat" class="mb-2">Sifat</label>
+                            <input type="select" class="form-control" name="tgl_akhir" id="bulan">
+                            <small class="text-danger">Jangan diisi jika ingin mencetak semua tanggal</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Cetak</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end modal -->
     <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center justify-content-between small">
