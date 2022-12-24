@@ -56,6 +56,9 @@
         </div>
     </div>
     <div class="row mb-2">
+        <h1>
+            <?= $sifat; ?>
+        </h1>
         <table class="table table-responsive">
             <thead>
                 <tr>

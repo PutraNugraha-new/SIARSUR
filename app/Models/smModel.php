@@ -49,26 +49,42 @@ class smModel extends Model
         return $this->where(['id_sifat' => $id])->countAllResults();
     }
 
-    public function getBulan($tgl_awal = false, $tgl_akhir = false, $sifatSurat = false)
+    public function getBulan($tgl_awal = false, $tgl_akhir = false, $sifat = false)
     {
-        if (($tgl_awal == false) || ($tgl_akhir == false) || ($sifatSurat == false)) {
+        if (($tgl_awal == false) && ($tgl_akhir == false) && ($sifat == false)) {
             $builder = $this->db->table("surat_masuk");
             // $builder->select('*');
             $builder->join('sifat_surat', 'sifat_surat.id_sifat = surat_masuk.id_sifat');
             $builder->join('jenis_surat', 'jenis_surat.id_jenis = surat_masuk.id_jenis');
             $sifat = $builder->get()->getResult();
             return $sifat;
+        } else if ($sifat == false) {
+            $builder = $this->db->table("surat_masuk");
+            // $builder->select('*');
+            $builder->join('sifat_surat', 'sifat_surat.id_sifat = surat_masuk.id_sifat');
+            $builder->join('jenis_surat', 'jenis_surat.id_jenis = surat_masuk.id_jenis');
+            $builder->where('tgl_surat >=', $tgl_awal);
+            $builder->where('tgl_surat <=', $tgl_akhir);
+            // $builder->where("DATE_FORMAT(tgl_surat, '%Y-%m')", $tgl_awal);
+            // $builder->where("DATE_FORMAT(tgl_surat, '%Y-%m')", $tgl_akhir);
+            $sifat = $builder->get()->getResult();
+            return $sifat;
+        } else if (($tgl_awal == false) && ($tgl_akhir == false)) {
+            $builder = $this->db->table("surat_masuk");
+            $builder->join('sifat_surat', 'sifat_surat.id_sifat = surat_masuk.id_sifat');
+            $builder->join('jenis_surat', 'jenis_surat.id_jenis = surat_masuk.id_jenis');
+            $builder->where(['sifat' => $sifat]);
+            $sifat = $builder->get()->getResult();
+            return $sifat;
+        } else {
+            $builder = $this->db->table("surat_masuk");
+            $builder->join('sifat_surat', 'sifat_surat.id_sifat = surat_masuk.id_sifat');
+            $builder->join('jenis_surat', 'jenis_surat.id_jenis = surat_masuk.id_jenis');
+            $builder->where('tgl_surat >=', $tgl_awal);
+            $builder->where('tgl_surat <=', $tgl_akhir);
+            $builder->where(['sifat' => $sifat]);
+            $sifat = $builder->get()->getResult();
+            return $sifat;
         }
-        $builder = $this->db->table("surat_masuk");
-        // $builder->select('*');
-        $builder->join('sifat_surat', 'sifat_surat.id_sifat = surat_masuk.id_sifat');
-        $builder->join('jenis_surat', 'jenis_surat.id_jenis = surat_masuk.id_jenis');
-        $builder->where('tgl_surat >=', $tgl_awal);
-        $builder->where('tgl_surat <=', $tgl_akhir);
-        $builder->where(['sifat' => $sifatSurat]);
-        // $builder->where("DATE_FORMAT(tgl_surat, '%Y-%m')", $tgl_awal);
-        // $builder->where("DATE_FORMAT(tgl_surat, '%Y-%m')", $tgl_akhir);
-        $sifat = $builder->get()->getResult();
-        return $sifat;
     }
 }

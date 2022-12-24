@@ -97,9 +97,13 @@
                             <small class="text-danger">Jangan diisi jika ingin mencetak semua tanggal</small>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="sifat" class="mb-2">Sifat</label>
-                            <input type="select" class="form-control" name="tgl_akhir" id="bulan">
-                            <small class="text-danger">Jangan diisi jika ingin mencetak semua tanggal</small>
+                            <label for="id_sifat" class="mb-2">Sifat</label>
+                            <select id="id_sifat" name="sifat" class="form-select">
+                                <option hidden value=""></option>
+                                <?php foreach ($sifat as $data) : ?>
+                                    <option value="<?= $data['sifat']; ?>"><?= $data['sifat']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
