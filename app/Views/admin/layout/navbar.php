@@ -26,8 +26,7 @@
                     </a>
                     <div class="collapse" id="suratKeluar" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="layout-static.html">Data Surat</a>
-                            <a class="nav-link" href="layout-static.html">Buat Surat</a>
+                            <a class="nav-link" href="/sk">Data Surat</a>
                         </nav>
                     </div>
                     <div class="sb-sidenav-menu-heading">Setting</div>

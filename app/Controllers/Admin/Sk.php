@@ -2,20 +2,20 @@
 
 namespace App\Controllers\Admin;
 
-use App\Models\smModel;
+use App\Models\skModel;
 use App\Models\sifatModel;
 use App\Controllers\BaseController;
 use App\Models\jenisModel;
 use \Dompdf\Dompdf;
 
-class Sm extends BaseController
+class Sk extends BaseController
 {
-    protected $SmModel;
+    protected $skModel;
     protected $sifatModel;
     protected $jenisModel;
     public function __construct()
     {
-        $this->SmModel = new smModel();
+        $this->skModel = new skModel();
         $this->sifatModel = new sifatModel();
         $this->jenisModel = new jenisModel();
     }
@@ -24,65 +24,24 @@ class Sm extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Surat Masuk',
+            'title' => 'Surat Keluar',
             'user' => 'Admin',
-            'sifat' => $this->sifatModel->getSifat(),
-            'surat' => $this->SmModel->getAll()
+            'surat' => $this->skModel->getAll()
         ];
-        // dd($data);
-
-        return view('admin/suratmasuk/index', $data);
+        return view('admin/suratkeluar/index', $data);
     }
-
-    public function printPdf()
-    {
-        $dompdf = new Dompdf();
-        $tgl_awal = $this->request->getVar('tgl_awal');
-        $tgl_akhir = $this->request->getVar('tgl_akhir');
-        $sifat = $this->request->getVar('sifat');
-        $data = [
-            'title' => 'Surat Masuk',
-            'user' => 'Admin',
-            'sifat' => $sifat,
-            'surat' => $this->SmModel->getBulan($tgl_awal, $tgl_akhir, $sifat)
-
-        ];
-        return view('admin/suratmasuk/cetak', $data);
-        // $html =  view('admin/suratmasuk/cetak', $data);
-        // $dompdf->loadHtml($html);
-        // $dompdf->setPaper('A4', 'portrait');
-        // $dompdf->render();
-        // $dompdf->stream('LaporanSuratMasuk.pdf', array(
-        //     "Attachment" => false
-        // ));
-    }
-
-    // public function detail($id)
-    // {
-    //     $data = [
-    //         'title' => 'Detail Surat',
-    //         'surat' => $this->SmModel->getSm($id)
-    //     ];
-
-    //     if (empty($data['surat'])) {
-    //         throw new \CodeIgniter\Exceptions\PageNotFoundException('Surat ' . $id . ' tidak ditemukan.');
-    //     }
-
-    //     return view('surat/detail', $data);
-    // }
 
     public function create()
     {
-        // session();
         $data = [
-            'title' => 'Form Surat Masuk',
+            'title' => 'Surat Keluar',
             'user' => 'Admin',
             'validation' => \config\Services::validation(),
-            'surat' => $this->SmModel->getSm(),
             'sifat' => $this->sifatModel->getSifat(),
-            'jenis' => $this->jenisModel->getJenis()
+            'jenis' => $this->jenisModel->getJenis(),
+            'surat' => $this->skModel->getSk()
         ];
-        return view('admin/suratmasuk/create', $data);
+        return view('admin/suratkeluar/create', $data);
     }
 
     public function save()
@@ -118,22 +77,10 @@ class Sm extends BaseController
                     'required' => 'Sifat Surat harus diisi'
                 ]
             ],
-            'surat_dari' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Asal Surat harus diisi'
-                ]
-            ],
             'surat_untuk' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Tujuan Surat harus diisi'
-                ]
-            ],
-            'tgl_terima' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} Surat harus diisi'
                 ]
             ],
             'perihal' => [
@@ -153,53 +100,48 @@ class Sm extends BaseController
         ])) {
             // $validation = \config\Services::validation();
             // return redirect()->to('sm/create')->withInput()->with('validation', $validation);
-            return redirect()->to('sm/create')->withInput();
+            return redirect()->to('sk/create')->withInput();
         }
-
         $fileSurat = $this->request->getFile('dokumen');
-        $fileSurat->move('fileSurat');
+        $fileSurat->move('fileSuratkeluar');
         $namaFile = $fileSurat->getName();
 
-        $slug = url_title($this->request->getVar('perihal'), '-', true);
-        $this->SmModel->save([
+        $this->skModel->save([
             'no_surat' => $this->request->getVar('no_surat'),
             'no_agenda' => $this->request->getVar('no_agenda'),
             'tgl_surat' => $this->request->getVar('tgl_surat'),
             'id_jenis' => $this->request->getVar('id_jenis'),
             'id_sifat' => $this->request->getVar('id_sifat'),
-            'surat_dari' => $this->request->getVar('surat_dari'),
             'surat_untuk' => $this->request->getVar('surat_untuk'),
-            'tgl_terima' => $this->request->getVar('tgl_terima'),
             'perihal' => $this->request->getVar('perihal'),
-            'dokumen' => $namaFile,
-            'slug' => $slug
+            'dokumen' => $namaFile
         ]);
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan');
 
-        return redirect()->to('/sm');
+        return redirect()->to('/sk');
     }
 
     public function delete($id)
     {
-        $surat = $this->SmModel->find($id);
-        unlink('fileSurat/' . $surat['dokumen']);
+        $surat = $this->skModel->find($id);
+        unlink('fileSuratkeluar/' . $surat['dokumen']);
 
-        $this->SmModel->delete($id);
+        $this->skModel->delete($id);
         session()->setFlashdata('pesan', 'Data berhasil dihapus');
-        return redirect()->to('sm');
+        return redirect()->to('sk');
     }
 
     public function edit($id)
     {
         $data = [
-            'title' => 'Form Edit Surat Masuk',
+            'title' => 'Form Edit Surat Keluar',
             'user' => 'Admin',
             'validation' => \config\Services::validation(),
-            'surat' => $this->SmModel->getSm($id),
+            'surat' => $this->skModel->getSk($id),
             'sifat' => $this->sifatModel->getSifat(),
             'jenis' => $this->jenisModel->getJenis()
         ];
-        return view('admin/suratmasuk/edit', $data);
+        return view('admin/suratkeluar/edit', $data);
     }
 
     public function update($id)
@@ -235,22 +177,10 @@ class Sm extends BaseController
                     'required' => 'Sifat Surat harus diisi'
                 ]
             ],
-            'surat_dari' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Asal Surat harus diisi'
-                ]
-            ],
             'surat_untuk' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Tujuan Surat harus diisi'
-                ]
-            ],
-            'tgl_terima' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} Surat harus diisi'
                 ]
             ],
             'perihal' => [
@@ -267,7 +197,7 @@ class Sm extends BaseController
                 ]
             ],
         ])) {
-            return redirect()->to('/sm/edit/' . $this->request->getVar('id_masuk'))->withInput();
+            return redirect()->to('/sk/edit/' . $this->request->getVar('id_keluar'))->withInput();
         }
         $fileSurat = $this->request->getFile('dokumen');
 
@@ -275,28 +205,24 @@ class Sm extends BaseController
             $namaFile = $this->request->getVar('fileLama');
         } else {
             $namaFile = $fileSurat->getName();
-            $fileSurat->move('fileSurat', $namaFile);
-            unlink('fileSurat/' . $this->request->getVar('fileLama'));
+            $fileSurat->move('fileSuratkeluar', $namaFile);
+            unlink('fileSuratkeluar/' . $this->request->getVar('fileLama'));
         }
 
-        $slug = url_title($this->request->getVar('perihal'), '-', true);
-        $this->SmModel->save([
-            'id_masuk' => $id,
+        $this->skModel->save([
+            'id_keluar' => $id,
             'no_surat' => $this->request->getVar('no_surat'),
             'no_agenda' => $this->request->getVar('no_agenda'),
             'tgl_surat' => $this->request->getVar('tgl_surat'),
             'id_jenis' => $this->request->getVar('id_jenis'),
             'id_sifat' => $this->request->getVar('id_sifat'),
-            'surat_dari' => $this->request->getVar('surat_dari'),
             'surat_untuk' => $this->request->getVar('surat_untuk'),
-            'tgl_terima' => $this->request->getVar('tgl_terima'),
             'perihal' => $this->request->getVar('perihal'),
-            'dokumen' => $namaFile,
-            'slug' => $slug
+            'dokumen' => $namaFile
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil diubah');
 
-        return redirect()->to('/sm');
+        return redirect()->to('/sk');
     }
 }

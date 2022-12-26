@@ -41,7 +41,7 @@
                         <div class="card-body">
                             <div class="card-title"><?= $suratKeluar; ?></div>
                             <div class="card-text">
-                                <h5>20 buah</h5>
+                                <h5><?= $jumlahSK; ?> buah</h5>
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">

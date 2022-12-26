@@ -56,14 +56,12 @@
         </div>
     </div>
     <div class="row mb-2">
-        <h1>
-            <?= $sifat; ?>
-        </h1>
         <table class="table table-responsive">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>No surat</th>
+                    <th>No Agenda</th>
                     <th>Perihal</th>
                     <th>Tanggal Surat</th>
                     <th>Jenis</th>
@@ -79,6 +77,7 @@
                     <tr>
                         <td><?= $i; ?></td>
                         <td><?= $data->no_surat; ?></td>
+                        <td><?= $data->no_agenda; ?></td>
                         <td><?= $data->perihal; ?></td>
                         <td><?= $data->tgl_surat; ?></td>
                         <td><?= $data->jenis; ?></td>

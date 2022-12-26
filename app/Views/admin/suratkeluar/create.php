@@ -1,12 +1,13 @@
 <?= $this->extend('admin/layout/template'); ?>
 
 <?= $this->section('content'); ?>
+
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
             <ol class="breadcrumb my-4">
                 <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="/sm">Surat Masuk</a></li>
+                <li class="breadcrumb-item"><a href="/sk">Form <?= $title; ?></a></li>
                 <li class="breadcrumb-item active"><?= $title; ?></li>
             </ol>
             <div class="card mb-4">
@@ -15,7 +16,7 @@
                     <?= $title; ?>
 
                 </div>
-                <form action="/admin/sm/save" method="POST" enctype="multipart/form-data">
+                <form action="/admin/sk/save" method="POST" enctype="multipart/form-data">
                     <div class="card-body">
                         <?= csrf_field(); ?>
                         <div class="row">
@@ -39,13 +40,6 @@
                                     <input type="date" name="tgl_surat" class="form-control <?= ($validation->hasError('tgl_surat ')) ? 'is-invalid' : ''; ?>" id="tglsurat" value="<?= old('tgl_surat'); ?>">
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('tgl_surat'); ?>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="tglterima" class="mb-2">Tanggal Diterima</label>
-                                    <input type="date" name="tgl_terima" class="form-control <?= ($validation->hasError('tgl_terima ')) ? 'is-invalid' : ''; ?>" id="tglterima" value="<?= old('tgl_terima'); ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('tgl_terima'); ?>
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
@@ -79,13 +73,6 @@
                                     </select>
                                     <div class="invalid-feedback">
                                         <?= $validation->getError('sifat'); ?>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="surat_dari" class="mb-2">Surat Dari</label>
-                                    <input type="text" name="surat_dari" class="form-control <?= ($validation->hasError('surat_dari')) ? 'is-invalid' : ''; ?>" id="surat_dari" value="<?= old('surat_dari'); ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('surat_dari'); ?>
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">

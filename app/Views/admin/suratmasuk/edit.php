@@ -24,6 +24,13 @@
                                 <input type="hidden" name="fileLama" value="<?= $surat['dokumen']; ?>">
                                 <input type="hidden" name="id_masuk" value="<?= $surat['id_masuk']; ?>">
                                 <div class="form-group mb-3">
+                                    <label for="no_agenda" class="mb-2">No Agenda</label>
+                                    <input type="text" class="form-control <?= ($validation->hasError('no_agenda')) ? 'is-invalid' : ''; ?>" name="no_agenda" placeholder="nomor surat" id="no_agenda" value="<?= $surat['no_agenda']; ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('no_agenda'); ?>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
                                     <label for="no_surat" class="mb-2">No Surat</label>
                                     <input type="text" class="form-control <?= ($validation->hasError('no_surat')) ? 'is-invalid' : ''; ?>" name="no_surat" placeholder="nomor surat" id="no_surat" value="<?= $surat['no_surat']; ?>">
                                     <div class="invalid-feedback">
@@ -54,7 +61,19 @@
                                 <div class="form-group mb-3">
                                     <label for="id_sifat" class="mb-2">Sifat</label>
                                     <select id="id_sifat" name="id_sifat" class="form-select <?= ($validation->hasError('id_sifat')) ? 'is-invalid' : ''; ?>">
-                                        <option hidden value=""></option>
+                                        <option hidden value="<?= $surat['id_sifat']; ?>">
+                                            <?php
+                                            if ($surat['id_sifat'] == '2') {
+                                                echo "Segera";
+                                            } else if ($surat['id_sifat'] == '3') {
+                                                echo "Penting";
+                                            } else if ($surat['id_sifat'] == '4') {
+                                                echo "Biasa";
+                                            } else {
+                                                echo "Sangat Segera";
+                                            }
+                                            ?>
+                                        </option>
                                         <?php foreach ($sifat as $data) : ?>
                                             <option value="<?= $data['id_sifat']; ?>"><?= $data['sifat']; ?></option>
                                         <?php endforeach; ?>
@@ -68,7 +87,19 @@
                                 <div class="form-group mb-3">
                                     <label for="id_jenis" class="mb-2">jenis</label>
                                     <select id="id_jenis" name="id_jenis" class="form-select <?= ($validation->hasError('id_jenis')) ? 'is-invalid' : ''; ?>">
-                                        <option hidden value=""></option>
+                                        <option hidden value="<?= $surat['id_jenis']; ?>">
+                                            <?php
+                                            if ($surat['id_jenis'] == '2') {
+                                                echo "Rahasia";
+                                            } else if ($surat['id_jenis'] == '3') {
+                                                echo "Konfidensial";
+                                            } else if ($surat['id_jenis'] == '4') {
+                                                echo "Biasa";
+                                            } else {
+                                                echo "Sangat Rahasia";
+                                            }
+                                            ?>
+                                        </option>
                                         <?php foreach ($jenis as $data) : ?>
                                             <option value="<?= $data['id_jenis']; ?>"><?= $data['jenis']; ?></option>
                                         <?php endforeach; ?>

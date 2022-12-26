@@ -44,6 +44,11 @@ $routes->get('sm/save', 'Admin\sm::save');
 $routes->delete('/sm/(:num)', 'Admin\sm::delete/$1');
 $routes->get('/sm/edit/(:num)', 'Admin\sm::edit/$1');
 
+$routes->get('/sk', 'Admin\sk::index');
+$routes->get('/sk/create', 'Admin\sk::create');
+$routes->delete('/sk/(:num)', 'Admin\sk::delete/$1');
+$routes->get('/sk/edit/(:num)', 'Admin\sk::edit/$1');
+
 $routes->get('/jenis', 'Admin\jenis::index');
 $routes->get('/jenis/create', 'Admin\jenis::create');
 $routes->delete('/jenis/(:num)', 'Admin\jenis::delete/$1');

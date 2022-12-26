@@ -25,7 +25,7 @@
                         Cetak
                     </a> -->
                     <button type="button" class="btn btn-outline-success mb-1 shadow" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fas fa-print"></i> Cetak
+                        <i class="fas fa-print"></i> Laporan
                     </button>
                     <?php if (session()->getFlashdata('pesan')) : ?>
                         <div class="alert alert-primary" role="alert">
@@ -36,6 +36,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>No Agenda</th>
                                 <th>No Surat / tgl Surat</th>
                                 <th>Tanggal Diterima</th>
                                 <th>Perihal / keterangan</th>
@@ -49,10 +50,10 @@
                             <?php foreach ($surat as $data) : ?>
                                 <tr>
                                     <td><?= $i; ?></td>
+                                    <td><?= $data->no_agenda; ?></td>
                                     <td>
                                         <?= $data->no_surat; ?> - <br>
                                         <b> <?= $data->tgl_surat; ?></b>
-
                                     </td>
                                     <td><?= $data->tgl_terima; ?></td>
                                     <td><?= $data->perihal; ?></td>

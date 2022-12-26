@@ -9,7 +9,7 @@ class smModel extends Model
     protected $table = 'surat_masuk';
     protected $primaryKey = 'id_masuk';
     protected $useTimestamps = true;
-    protected $allowedFields = ['no_surat', 'tgl_surat', 'id_jenis', 'id_sifat', 'surat_dari', 'surat_untuk', 'tgl_terima', 'perihal', 'dokumen', 'slug'];
+    protected $allowedFields = ['no_surat', 'no_agenda', 'tgl_surat', 'id_jenis', 'id_sifat', 'surat_dari', 'surat_untuk', 'tgl_terima', 'perihal', 'dokumen', 'slug'];
 
     public function getSm($id = false)
     {
